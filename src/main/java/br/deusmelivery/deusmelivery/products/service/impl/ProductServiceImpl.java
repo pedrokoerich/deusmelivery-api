@@ -9,7 +9,6 @@ import br.deusmelivery.deusmelivery.products.entity.Product;
 import br.deusmelivery.deusmelivery.products.repository.ProductRepository;
 import br.deusmelivery.deusmelivery.products.service.ProductService;
 
-@Service
 public class ProductServiceImpl implements ProductService{
     
     @Autowired
