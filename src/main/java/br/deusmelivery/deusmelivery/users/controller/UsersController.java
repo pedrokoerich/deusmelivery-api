@@ -1,6 +1,5 @@
 package br.deusmelivery.deusmelivery.users.controller;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

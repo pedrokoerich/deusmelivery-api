@@ -1,6 +1,5 @@
 package br.deusmelivery.deusmelivery.users.service.Impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.deusmelivery.deusmelivery.users.entity.Users;
 import br.deusmelivery.deusmelivery.users.repository.UsersRepository;
@@ -13,7 +12,6 @@ public class UsersServiceImpl implements UsersService {
 
     private final UsersRepository userRepository;
 
-    @Autowired
     public UsersServiceImpl(UsersRepository userRepository) {
         this.userRepository = userRepository;
     }
