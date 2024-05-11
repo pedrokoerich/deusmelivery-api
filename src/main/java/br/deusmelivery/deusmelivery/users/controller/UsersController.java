@@ -30,13 +30,15 @@ public class UsersController {
         return userService.getUserById(id);
     }
 
-    @PostMapping
-    public ResponseEntity<Users> createUser(@RequestBody Users user) {
-        userService.createUser(user);
-        return ResponseEntity.ok()
-        .header(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*").build();
+     @PostMapping
+    public ResponseEntity<Boolean> createUser(@RequestBody Users user) {
+        boolean created = userService.createUser(user);
+        if (created) {
+            return ResponseEntity.ok().build(); // Retorno 200 OK se o usuário foi criado com sucesso
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); // Retorno 400 Bad Request se ocorrer algum erro na criação do usuário
+        }
     }
-
     @PutMapping("/{id}")
     public ResponseEntity<Users> updateUser(@PathVariable Long id, @RequestBody Users user) {
         userService.updateUser(id, user);

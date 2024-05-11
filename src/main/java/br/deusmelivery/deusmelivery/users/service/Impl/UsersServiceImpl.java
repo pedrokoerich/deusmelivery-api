@@ -28,8 +28,14 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Users createUser(Users user) {
-        return userRepository.save(user);
+    public boolean createUser(Users user) {
+        try {
+            userRepository.save(user);
+            return true; // Retorna true se a criação for bem-sucedida
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false; // Retorna false se ocorrer algum erro na criação
+        }
     }
 
     @Override
