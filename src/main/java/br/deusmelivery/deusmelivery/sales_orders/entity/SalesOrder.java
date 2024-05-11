@@ -1,4 +1,4 @@
-package br.deusmelivery.deusmelivery.sales_orders.entity;
+/* package br.deusmelivery.deusmelivery.sales_orders.entity;
 
 import jakarta.persistence.Entity;
 
@@ -6,3 +6,4 @@ import jakarta.persistence.Entity;
 public class SalesOrder {
     
 }
+ */

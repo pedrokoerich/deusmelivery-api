@@ -1,6 +1,6 @@
-package br.deusmelivery.deusmelivery.sales_orders.service;
+/* package br.deusmelivery.deusmelivery.sales_orders.service;
 
 public interface SalesOrderService {
 
     
-}
+} */

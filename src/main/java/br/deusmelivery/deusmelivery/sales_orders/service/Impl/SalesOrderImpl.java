@@ -1,4 +1,4 @@
-package br.deusmelivery.deusmelivery.sales_orders.service.Impl;
+/* package br.deusmelivery.deusmelivery.sales_orders.service.Impl;
 
 import org.springframework.stereotype.Service;
 
@@ -6,3 +6,4 @@ import org.springframework.stereotype.Service;
 public class SalesOrderImpl {
     
 }
+ */

@@ -1,4 +1,4 @@
-package br.deusmelivery.deusmelivery.sales_orders.repository;
+/* package br.deusmelivery.deusmelivery.sales_orders.repository;
 
 import org.springframework.stereotype.Repository;
 
@@ -6,3 +6,4 @@ import org.springframework.stereotype.Repository;
 public interface SalesOrderRepository {
     
 }
+ */

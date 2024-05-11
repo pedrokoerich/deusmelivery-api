@@ -1,22 +1,25 @@
 package br.deusmelivery.deusmelivery.users.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class User {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
-    public User() {
+    public Users() {
         // Construtor vazio necessário para JPA
     }
 
-    public User(Long id, String name) {
+    public Users(Long id, String name) {
         this.id = id;
         this.name = name;
     }
