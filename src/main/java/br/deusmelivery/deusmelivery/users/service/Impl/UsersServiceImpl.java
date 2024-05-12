@@ -49,7 +49,13 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
+    public boolean deleteUser(Long id) {
+        try {
+            userRepository.deleteById(id);
+            return true; // Retorna true se a exclusão for bem-sucedida
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false; // Retorna false se ocorrer algum erro na exclusão
+        }
     }
 }

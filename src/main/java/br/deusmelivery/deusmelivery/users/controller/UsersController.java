@@ -30,7 +30,7 @@ public class UsersController {
         return userService.getUserById(id);
     }
 
-     @PostMapping
+    @PostMapping
     public ResponseEntity<Boolean> createUser(@RequestBody Users user) {
         boolean created = userService.createUser(user);
         if (created) {
@@ -46,8 +46,13 @@ public class UsersController {
     }
     
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+    public ResponseEntity<Boolean> deleteUser(@PathVariable Long id) {
+        boolean deleted = userService.deleteUser(id);
+        if (deleted) {
+            return ResponseEntity.ok().build(); // Retorno 200 OK se o usuário foi excluido com sucesso
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build(); // Retorno 400 Bad Request se ocorrer algum erro na exclusão do usuário
+        }
     }
     
 }

@@ -8,5 +8,5 @@ public interface UsersService {
     Users getUserById(Long id);
     boolean createUser(Users user);
     Users updateUser(Long id, Users user);
-    void deleteUser(Long id);
+    boolean deleteUser(Long id);
 }
