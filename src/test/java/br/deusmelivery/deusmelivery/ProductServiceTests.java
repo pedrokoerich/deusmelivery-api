@@ -8,8 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import br.deusmelivery.deusmelivery.products.service.ProductService;
-import br.deusmelivery.deusmelivery.products.entity.Product;
+import br.deusmelivery.deusmelivery.products.service.ProductsService;
+import br.deusmelivery.deusmelivery.products.entity.Products;
 
 @SpringBootTest
 @ContextConfiguration
@@ -19,7 +19,7 @@ import br.deusmelivery.deusmelivery.products.entity.Product;
 public class ProductServiceTests {
 
     @Autowired
-    private ProductService productService;
+    private ProductsService productService;
 
     @Test
     public void getAllProductsEmptyList() {
@@ -29,7 +29,7 @@ public class ProductServiceTests {
     }
     @Test
     public void createProduct() {
-        var product = new Product("Product 1", "Description 1", 10.0);
+        var product = new Products(null, "Product 1", "Description 1", 10.0, null, null);
         productService.createProduct(product);
     }   
     
