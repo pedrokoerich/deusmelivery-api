@@ -3,15 +3,21 @@ package br.deusmelivery.deusmelivery.products.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.deusmelivery.deusmelivery.products.entity.Products;
 import br.deusmelivery.deusmelivery.products.repository.ProductsRepository;
 import br.deusmelivery.deusmelivery.products.service.ProductsService;
 
+@Service
 public class ProductsServiceImpl implements ProductsService{
     
     @Autowired
     private ProductsRepository productsRepository;
+        public ProductsServiceImpl(ProductsRepository productsRepository) {
+        this.productsRepository = productsRepository;
+    }
+
 
     @Override
     public boolean createProduct(Products products) {

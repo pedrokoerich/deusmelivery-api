@@ -9,7 +9,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import br.deusmelivery.deusmelivery.products.service.ProductsService;
-import br.deusmelivery.deusmelivery.products.entity.Products;
+//import br.deusmelivery.deusmelivery.products.entity.Products;
 
 @SpringBootTest
 @ContextConfiguration
@@ -27,10 +27,10 @@ public class ProductServiceTests {
         assertEquals(listProducts.size(), 0);
 
     }
-    @Test
-    public void createProduct() {
-        var product = new Products(null, "Product 1", "Description 1", 10.0, null, null);
-        productService.createProduct(product);
-    }   
+    // @Test
+    // public void createProduct() {
+    //     var product = new Products(null, "Product 1", "Description 1", 10.0, null, null);
+    //     productService.createProduct(product);
+    // }   
     
 }

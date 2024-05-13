@@ -1,7 +1,5 @@
 package br.deusmelivery.deusmelivery.products.entity;
 
-import java.sql.Date;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -12,13 +10,13 @@ import jakarta.persistence.Id;
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Products {
-   @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String category;
-    private Number quantity;
-    private Number value;
+    private int quantity;
+    private float productValue;
     private String fornec;
 
     public Products() {
@@ -26,12 +24,12 @@ public class Products {
     }
 
 
-    public Products(Long id, String name, String category, Number quantity, Number value, String fornec) {
+    public Products(Long id, String name, String category, int quantity, float productValue, String fornec) {
         this.id = id;
         this.name = name;
         this.category = category;
         this.quantity = quantity;
-        this.value = value;
+        this.productValue = productValue;
         this.fornec = fornec;
     }
 
@@ -66,23 +64,23 @@ public class Products {
     }
 
 
-    public Number getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
 
-    public void setQuantity(Number quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
 
-    public Number getValue() {
-        return value;
+    public float getValue() {
+        return productValue;
     }
 
 
-    public void setValue(Number value) {
-        this.value = value;
+    public void setValue(float productValue) {
+        this.productValue = productValue;
     }
 
 

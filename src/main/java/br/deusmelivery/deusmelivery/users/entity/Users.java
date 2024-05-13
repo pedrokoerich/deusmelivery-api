@@ -22,7 +22,7 @@ public class Users {
     private String secretKey;
     private String phone;
     private String address;
-    private Number addressNumber;
+    private int addressNumber;
     private String city;
     private String state;
     private String cpf;
@@ -32,7 +32,7 @@ public class Users {
         // Construtor vazio necessário para JPA
     }
 
-    public Users(Long id, String name, String genre, Date birthday, String email, String secretKey, String phone, String address, Number addressNumber, String city, String state, String cpf, String status) {
+    public Users(Long id, String name, String genre, Date birthday, String email, String secretKey, String phone, String address, int addressNumber, String city, String state, String cpf, String status) {
         this.id = id;
         this.name = name;
         this.genre = genre;
@@ -117,7 +117,7 @@ public class Users {
         return addressNumber;
     }
 
-    public void setAddressNumber(Number addressNumber) {
+    public void setAddressNumber(int addressNumber) {
         this.addressNumber = addressNumber;
     }
 
