@@ -22,7 +22,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Users getUserById(Long id) {
+    public Users getUserById(String id) {
         Optional<Users> userOptional = userRepository.findById(id);
         return userOptional.orElse(null);
     }
@@ -39,7 +39,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public Users updateUser(Long id, Users user) {
+    public Users updateUser(String id, Users user) {
         if (userRepository.existsById(id)) {
             user.setId(id); // Garante que o ID passado é o mesmo que o ID do usuário
             return userRepository.save(user);
@@ -49,7 +49,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public boolean deleteUser(Long id) {
+    public boolean deleteUser(String id) {
         try {
             userRepository.deleteById(id);
             return true; // Retorna true se a exclusão for bem-sucedida

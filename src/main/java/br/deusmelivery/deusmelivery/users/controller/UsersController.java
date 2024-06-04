@@ -1,5 +1,6 @@
 package br.deusmelivery.deusmelivery.users.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.List;
 @RequestMapping("/api/v1/users")
 public class UsersController {
 
+    @Autowired
     private final UsersService userService;
 
     public UsersController(UsersService userService) {
@@ -25,7 +27,7 @@ public class UsersController {
     }
 
     @GetMapping("/{id}")
-    public Users getUserById(@PathVariable Long id) {
+    public Users getUserById(@PathVariable String id) {
         return userService.getUserById(id);
     }
 
@@ -39,13 +41,13 @@ public class UsersController {
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Users> updateUser(@PathVariable Long id, @RequestBody Users user) {
+    public ResponseEntity<Users> updateUser(@PathVariable String id, @RequestBody Users user) {
         userService.updateUser(id, user);
         return new ResponseEntity<Users>(user, HttpStatus.OK);
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Boolean> deleteUser(@PathVariable String id) {
         boolean deleted = userService.deleteUser(id);
         if (deleted) {
             return ResponseEntity.ok().build(); // Retorno 200 OK se o usuário foi excluido com sucesso
