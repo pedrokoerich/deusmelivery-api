@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SalesOrderImpl implements SalesOrderService {
+public class SalesOrderServiceImpl implements SalesOrderService {
     private final SalesOrderRepository salesOrderRepository;
 
-    public SalesOrderImpl(SalesOrderRepository salesOrderRepository) {
+    public SalesOrderServiceImpl(SalesOrderRepository salesOrderRepository) {
         this.salesOrderRepository = salesOrderRepository;
     }
     
