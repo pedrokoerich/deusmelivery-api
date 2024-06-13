@@ -3,9 +3,10 @@ import br.deusmelivery.deusmelivery.suppliers.entity.Suppliers;
 import br.deusmelivery.deusmelivery.suppliers.repository.SuppliersRepository;
 import br.deusmelivery.deusmelivery.suppliers.service.SuppliersService;
 import java.util.List;
+import org.springframework.stereotype.Service;
 import java.util.Optional;
 
-
+@Service
 public class SuppliersServiceImpl implements SuppliersService {
     private final SuppliersRepository suppliersRepository;
 

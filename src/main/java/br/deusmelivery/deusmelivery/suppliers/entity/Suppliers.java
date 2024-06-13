@@ -1,6 +1,9 @@
 package br.deusmelivery.deusmelivery.suppliers.entity;
 import java.sql.Date;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -21,10 +24,19 @@ public class Suppliers {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    private String nome;
-    private String nomeFantasia;
+    private String name;
+    private String fantasyName;
+    private String status;
     private String cnpj;
-    private String telefone;
+    private String phone;
     private String email;
-    private Date dataInclusao;
+    @CreationTimestamp
+    private Date inclusionDate;
+    @UpdateTimestamp
+    private Date updatedDate;
+    private String state;
+    private String city;
+    private String address;
+    private Number addressNumber;
+
 }
