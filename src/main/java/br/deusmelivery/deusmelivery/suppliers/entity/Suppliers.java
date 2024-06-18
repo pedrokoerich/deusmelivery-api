@@ -37,6 +37,6 @@ public class Suppliers {
     private String state;
     private String city;
     private String address;
-    private Number addressNumber;
+    private Number address_number;
 
 }

@@ -20,6 +20,11 @@ public class SuppliersServiceImpl implements SuppliersService {
     }
 
     @Override
+    public List<Suppliers> getComboSuppliers() {
+        return suppliersRepository.findAll();
+    }
+
+    @Override
     public Suppliers getSuppliersById(String id) {
         Optional<Suppliers> suppliersOptional = suppliersRepository.findById(id);
         return suppliersOptional.orElse(null);

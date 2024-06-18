@@ -27,6 +27,11 @@ public class SuppliersController {
         return suppliersService.getAllSuppliers();
     }
 
+    @GetMapping("/combo")
+    public List<Suppliers> getComboSuppliers() {
+        return suppliersService.getComboSuppliers();
+    }
+
     @GetMapping("/{id}")
     public Suppliers getSuppliersById(@PathVariable String id) {
         return suppliersService.getSuppliersById(id);

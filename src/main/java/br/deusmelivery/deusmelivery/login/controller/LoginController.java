@@ -62,7 +62,7 @@ public class LoginController {
 			newUser.setName(register.name());
             newUser.setAddress(register.address());
             newUser.setPhone(register.phone());
-            newUser.setAddressNumber(register.addressNumber());
+            newUser.setAddress_number(register.address_number());
             newUser.setBirthday(register.birthday());
             newUser.setCity(register.city());
             newUser.setCpf(register.cpf());

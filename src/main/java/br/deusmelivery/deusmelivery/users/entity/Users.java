@@ -28,7 +28,7 @@ public class Users {
     private String password;
     private String phone;
     private String address;
-    private int addressNumber;
+    private int address_number;
     private String city;
     private String state;
     private String cpf;
