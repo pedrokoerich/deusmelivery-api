@@ -1,10 +1,12 @@
 package br.deusmelivery.deusmelivery.suppliers.service.Impl;
 import br.deusmelivery.deusmelivery.suppliers.entity.Suppliers;
+import br.deusmelivery.deusmelivery.suppliers.entity.DTO.SuppliersComboDTO;
 import br.deusmelivery.deusmelivery.suppliers.repository.SuppliersRepository;
 import br.deusmelivery.deusmelivery.suppliers.service.SuppliersService;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SuppliersServiceImpl implements SuppliersService {
@@ -19,9 +21,17 @@ public class SuppliersServiceImpl implements SuppliersService {
         return suppliersRepository.findAll();
     }
 
-    @Override
-    public List<Suppliers> getComboSuppliers() {
-        return suppliersRepository.findAll();
+    public List<SuppliersComboDTO> getComboSuppliers(String filter) {
+        List<Suppliers> suppliers;
+        if (filter == null || filter.isEmpty()) {
+            suppliers = suppliersRepository.findTop10ByOrderByNameAsc();
+        } else {
+            suppliers = suppliersRepository.findByNameContaining(filter);
+        }
+
+        return suppliers.stream()
+                .map(supplier -> new SuppliersComboDTO(supplier.getName(), supplier.getId()))
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import br.deusmelivery.deusmelivery.suppliers.entity.Suppliers;
+import br.deusmelivery.deusmelivery.suppliers.entity.DTO.SuppliersComboDTO;
 import br.deusmelivery.deusmelivery.suppliers.service.SuppliersService;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -28,8 +29,8 @@ public class SuppliersController {
     }
 
     @GetMapping("/combo")
-    public List<Suppliers> getComboSuppliers() {
-        return suppliersService.getComboSuppliers();
+    public List<SuppliersComboDTO> getComboSuppliers(@RequestParam(required = false) String filter) {
+        return suppliersService.getComboSuppliers(filter);
     }
 
     @GetMapping("/{id}")

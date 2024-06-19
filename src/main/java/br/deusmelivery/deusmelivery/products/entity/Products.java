@@ -1,5 +1,7 @@
 package br.deusmelivery.deusmelivery.products.entity;
 
+import java.util.Currency;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -16,7 +18,7 @@ public class Products {
     private String name;
     private String category;
     private int quantity;
-    private float productValue;
+    private Float productValue;
     private String fornec;
 
     public Products() {
@@ -24,7 +26,7 @@ public class Products {
     }
 
 
-    public Products(Long id, String name, String category, int quantity, float productValue, String fornec) {
+    public Products(Long id, String name, String category, int quantity, Float productValue, String fornec) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -74,12 +76,12 @@ public class Products {
     }
 
 
-    public float getValue() {
+    public Float getProductValue() {
         return productValue;
     }
 
 
-    public void setValue(float productValue) {
+    public void setProductValue(Float productValue) {
         this.productValue = productValue;
     }
 
