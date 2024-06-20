@@ -34,7 +34,7 @@ public class SuppliersController {
     }
 
     @GetMapping("/{id}")
-    public Suppliers getSuppliersById(@PathVariable String id) {
+    public Suppliers getSuppliersById(@PathVariable Long id) {
         return suppliersService.getSuppliersById(id);
     }
 
@@ -49,13 +49,13 @@ public class SuppliersController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Suppliers> updateSuppliers(@PathVariable String id, @RequestBody Suppliers suppliers) {
+    public ResponseEntity<Suppliers> updateSuppliers(@PathVariable Long id, @RequestBody Suppliers suppliers) {
         suppliersService.updateSuppliers(id, suppliers);
         return new ResponseEntity<Suppliers>(suppliers, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteSuppliers(@PathVariable String id) {
+    public ResponseEntity<Boolean> deleteSuppliers(@PathVariable Long id) {
         boolean deleted = suppliersService.deleteSuppliers(id);
         if (deleted) {
             return ResponseEntity.ok().build(); // Retorno 200 OK se o usuário foi excluido com sucesso

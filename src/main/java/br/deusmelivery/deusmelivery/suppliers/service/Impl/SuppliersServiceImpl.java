@@ -35,7 +35,7 @@ public class SuppliersServiceImpl implements SuppliersService {
     }
 
     @Override
-    public Suppliers getSuppliersById(String id) {
+    public Suppliers getSuppliersById(Long id) {
         Optional<Suppliers> suppliersOptional = suppliersRepository.findById(id);
         return suppliersOptional.orElse(null);
     }
@@ -52,7 +52,7 @@ public class SuppliersServiceImpl implements SuppliersService {
     }
 
     @Override
-    public Suppliers updateSuppliers(String id, Suppliers suppliers) {
+    public Suppliers updateSuppliers(Long id, Suppliers suppliers) {
         if (suppliersRepository.existsById(id)) {
             suppliers.setId(id); // Garante que o ID passado é o mesmo que o ID do pedido
             return suppliersRepository.save(suppliers);
@@ -62,7 +62,7 @@ public class SuppliersServiceImpl implements SuppliersService {
     }
 
     @Override
-    public boolean deleteSuppliers(String id) {
+    public boolean deleteSuppliers(Long id) {
         try {
             suppliersRepository.deleteById(id);
             return true; // Retorna true se a exclusão for bem-sucedida

@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface SuppliersRepository extends JpaRepository<Suppliers, String>{
-    Optional<Suppliers> findById(String id);
+public interface SuppliersRepository extends JpaRepository<Suppliers, Long>{
+    Optional<Suppliers> findById(Long id);
     List<Suppliers> findByNameContaining(String name);
     List<Suppliers> findTop10ByOrderByNameAsc();
     

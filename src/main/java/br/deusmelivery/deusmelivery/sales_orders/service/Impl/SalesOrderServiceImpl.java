@@ -21,7 +21,7 @@ public class SalesOrderServiceImpl implements SalesOrderService {
     }
 
     @Override
-    public SalesOrder getSalesOrderById(String id) {
+    public SalesOrder getSalesOrderById(Long id) {
         Optional<SalesOrder> salesOrderOptional = salesOrderRepository.findById(id);
         return salesOrderOptional.orElse(null);
     }
@@ -38,7 +38,7 @@ public class SalesOrderServiceImpl implements SalesOrderService {
     }
 
     @Override
-    public SalesOrder updateSalesOrder(String id, SalesOrder salesOrder) {
+    public SalesOrder updateSalesOrder(Long id, SalesOrder salesOrder) {
         if (salesOrderRepository.existsById(id)) {
             salesOrder.setId(id); // Garante que o ID passado é o mesmo que o ID do pedido
             return salesOrderRepository.save(salesOrder);
@@ -48,7 +48,7 @@ public class SalesOrderServiceImpl implements SalesOrderService {
     }
 
     @Override
-    public boolean deleteSalesOrder(String id) {
+    public boolean deleteSalesOrder(Long id) {
         try {
             salesOrderRepository.deleteById(id);
             return true; // Retorna true se a exclusão for bem-sucedida

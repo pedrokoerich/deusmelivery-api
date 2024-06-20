@@ -7,8 +7,8 @@ import br.deusmelivery.deusmelivery.suppliers.entity.DTO.SuppliersComboDTO;
 public interface SuppliersService {
     List<Suppliers> getAllSuppliers();
     List<SuppliersComboDTO> getComboSuppliers(String filter);
-    Suppliers getSuppliersById(String id);
+    Suppliers getSuppliersById(Long id);
     boolean postSuppliers(Suppliers user);
-    Suppliers updateSuppliers(String id, Suppliers supplier);
-    boolean deleteSuppliers(String id);
+    Suppliers updateSuppliers(Long id, Suppliers supplier);
+    boolean deleteSuppliers(Long id);
 }

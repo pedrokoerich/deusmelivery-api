@@ -22,8 +22,8 @@ import lombok.NoArgsConstructor;
 
 public class Suppliers {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String fantasyName;
     private String status;

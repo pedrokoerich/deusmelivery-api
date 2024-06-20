@@ -5,8 +5,8 @@ import br.deusmelivery.deusmelivery.sales_orders.entity.SalesOrder;
 
 public interface SalesOrderService {
     List<SalesOrder> getAllSalesOrder();
-    SalesOrder getSalesOrderById(String id);
+    SalesOrder getSalesOrderById(Long id);
     boolean postSalesOrder(SalesOrder user);
-    SalesOrder updateSalesOrder(String id, SalesOrder user);
-    boolean deleteSalesOrder(String id);
+    SalesOrder updateSalesOrder(Long id, SalesOrder user);
+    boolean deleteSalesOrder(Long id);
 }

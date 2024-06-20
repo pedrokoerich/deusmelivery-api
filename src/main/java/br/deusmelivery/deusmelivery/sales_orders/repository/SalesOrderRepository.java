@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import br.deusmelivery.deusmelivery.sales_orders.entity.SalesOrder;
 
 @Repository
-public interface SalesOrderRepository extends JpaRepository<SalesOrder, String>{
-    Optional<SalesOrder> findById(String id);
+public interface SalesOrderRepository extends JpaRepository<SalesOrder, Long>{
+    Optional<SalesOrder> findById(Long id);
     
 }

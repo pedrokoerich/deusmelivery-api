@@ -5,8 +5,8 @@ import br.deusmelivery.deusmelivery.users.entity.Users;
 
 public interface UsersService {
     List<Users> getAllUsers();
-    Users getUserById(String id);
+    Users getUserById(Long id);
     boolean createUser(Users user);
-    Users updateUser(String id, Users user);
-    boolean deleteUser(String id);
+    Users updateUser(Long id, Users user);
+    boolean deleteUser(Long id);
 }

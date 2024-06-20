@@ -27,7 +27,7 @@ public class UsersController {
     }
 
     @GetMapping("/{id}")
-    public Users getUserById(@PathVariable String id) {
+    public Users getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
@@ -41,13 +41,13 @@ public class UsersController {
         }
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Users> updateUser(@PathVariable String id, @RequestBody Users user) {
+    public ResponseEntity<Users> updateUser(@PathVariable Long id, @RequestBody Users user) {
         userService.updateUser(id, user);
         return new ResponseEntity<Users>(user, HttpStatus.OK);
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteUser(@PathVariable String id) {
+    public ResponseEntity<Boolean> deleteUser(@PathVariable Long id) {
         boolean deleted = userService.deleteUser(id);
         if (deleted) {
             return ResponseEntity.ok().build(); // Retorno 200 OK se o usuário foi excluido com sucesso

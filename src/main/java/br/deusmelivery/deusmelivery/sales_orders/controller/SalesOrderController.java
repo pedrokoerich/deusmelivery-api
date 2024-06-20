@@ -27,7 +27,7 @@ public class SalesOrderController {
     }
 
     @GetMapping("/{id}")
-    public SalesOrder getSalesOrderById(@PathVariable String id) {
+    public SalesOrder getSalesOrderById(@PathVariable Long id) {
         return salesOrderService.getSalesOrderById(id);
     }
 
@@ -42,14 +42,14 @@ public class SalesOrderController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<SalesOrder> updateUser(@PathVariable String id, @RequestBody SalesOrder salesOrder) {
+    public ResponseEntity<SalesOrder> updateUser(@PathVariable Long id, @RequestBody SalesOrder salesOrder) {
         salesOrderService.updateSalesOrder(id, salesOrder);
         return new ResponseEntity<SalesOrder>(salesOrder, HttpStatus.OK);
     }
 
         
     @DeleteMapping("/{id}")
-    public ResponseEntity<Boolean> deleteSalesOrder(@PathVariable String id) {
+    public ResponseEntity<Boolean> deleteSalesOrder(@PathVariable Long id) {
         boolean deleted = salesOrderService.deleteSalesOrder(id);
         if (deleted) {
             return ResponseEntity.ok().build(); // Retorno 200 OK se o usuário foi excluido com sucesso
