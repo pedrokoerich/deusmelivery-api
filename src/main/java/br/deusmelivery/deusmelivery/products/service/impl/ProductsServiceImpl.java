@@ -1,13 +1,19 @@
 package br.deusmelivery.deusmelivery.products.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import br.deusmelivery.deusmelivery.products.entity.Products;
+import br.deusmelivery.deusmelivery.products.entity.DTO.CategoryProductQuantityDTO;
 import br.deusmelivery.deusmelivery.products.repository.ProductsRepository;
 import br.deusmelivery.deusmelivery.products.service.ProductsService;
+import jakarta.persistence.criteria.Predicate;
 
 @Service
 public class ProductsServiceImpl implements ProductsService{
@@ -52,13 +58,58 @@ public class ProductsServiceImpl implements ProductsService{
     }
 
     @Override
-    public List<Products> listProducts() {
-        return productsRepository.findAll();
+    public List<Products> listProducts(Map<String, String> filters) {
+        return productsRepository.findAll(Specification.where(applyFilters(filters)));
     }
 
     @Override
+    public List<Products> listProducts() {
+        return productsRepository.findAll();
+    }
+    
+    private Specification<Products> applyFilters(Map<String, String> filters) {
+        return (root, query, criteriaBuilder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+    
+            filters.forEach((key, value) -> {
+                if (value != null && !value.isEmpty()) {
+                    switch (key) {
+                        case "categoryFilter":
+                            predicates.add(criteriaBuilder.equal(root.get("categoryFilter"), value));
+                            break;
+                        case "name":
+                            predicates.add(criteriaBuilder.like(root.get("name"), "%" + value + "%"));
+                            break;
+                        case "quantity":
+                            predicates.add(criteriaBuilder.equal(root.get("quantity"), Integer.parseInt(value)));
+                            break;
+                        case "productValue":
+                            predicates.add(criteriaBuilder.equal(root.get("productValue"), Float.parseFloat(value)));
+                            break;
+                        case "fornec":
+                            predicates.add(criteriaBuilder.equal(root.get("fornec"), value));
+                            break;
+                    }
+                }
+            });
+    
+            return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
+        };
+    }
+
+    @Override
+    public List<CategoryProductQuantityDTO> sumQuantityByCategory() {
+        return productsRepository.findAll().stream()
+                .collect(Collectors.groupingBy(Products::getCategory, Collectors.summingLong(Products::getQuantity)))
+                .entrySet().stream()
+                .map(entry -> new CategoryProductQuantityDTO(entry.getKey(), entry.getValue()))
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
     public Products getProductById(Long id) {
-       return productsRepository.findById(id).get();
+        return productsRepository.findById(id).orElse(null);
     }
     
 }

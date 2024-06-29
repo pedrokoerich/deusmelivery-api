@@ -26,7 +26,7 @@ public class SuppliersServiceImpl implements SuppliersService {
         if (filter == null || filter.isEmpty()) {
             suppliers = suppliersRepository.findTop10ByOrderByNameAsc();
         } else {
-            suppliers = suppliersRepository.findByNameContaining(filter);
+            suppliers = suppliersRepository.findByNameLike(filter).stream().limit(10).collect(Collectors.toList());
         }
 
         return suppliers.stream()

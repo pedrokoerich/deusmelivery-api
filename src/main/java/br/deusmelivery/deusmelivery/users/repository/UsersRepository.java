@@ -12,4 +12,5 @@ import br.deusmelivery.deusmelivery.users.entity.Users;
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Long> {
     Optional<Users> findByLogin(String login);
-}
+    Users findByNameEquals(String name); 
+}   

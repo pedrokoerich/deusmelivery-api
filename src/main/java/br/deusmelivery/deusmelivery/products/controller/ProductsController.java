@@ -1,29 +1,40 @@
 package br.deusmelivery.deusmelivery.products.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.*;
 import br.deusmelivery.deusmelivery.products.entity.Products;
+import br.deusmelivery.deusmelivery.products.entity.DTO.CategoryProductQuantityDTO;
 import br.deusmelivery.deusmelivery.products.service.ProductsService;
+
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductsController {
-
     private final ProductsService productsService;
 
     public ProductsController(ProductsService productsService) {
         this.productsService = productsService;
     }
 
-    @GetMapping
-    public List<Products> getAllProducts() {
-        return productsService.listProducts();
+    @GetMapping("/indicadores")
+    public ResponseEntity<List<CategoryProductQuantityDTO>> getSumQuantityByCategory() {
+        List<CategoryProductQuantityDTO> sumQuantityByCategory = productsService.sumQuantityByCategory();
+        return ResponseEntity.ok(sumQuantityByCategory);
     }
+    
+
+    @GetMapping
+    public ResponseEntity<List<Products>> getAllProducts(@RequestParam Map<String, String> filters) {
+        List<Products> products = productsService.listProducts(filters);
+        return ResponseEntity.ok(products);
+    }
+    
+    
 
     @GetMapping("/{id}")
     public Products getProductById(@PathVariable Long id) {

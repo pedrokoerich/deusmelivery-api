@@ -18,23 +18,23 @@ public class TokenSevice {
     @Value("${token.secretKey}")
     private String secretKey = "secretKey";
 
+    @Value("${token.expiration.seconds}")
+    private long expirationSeconds = 86400; // Valor padrão para 1 dia
+
     public String generateToken(Users users)
 	{
 		try
 		{
 			Algorithm algorithm = Algorithm.HMAC256(secretKey);
+            Date expirationDate = Date.from(Instant.now().plusSeconds(expirationSeconds));
 			return JWT.create().withIssuer("login-deusmelivery-api").withSubject(users.getLogin())
-				.withExpiresAt(generateExpirationDate()).sign(algorithm);
+				.withExpiresAt(expirationDate).sign(algorithm);
 		}
 		catch (JWTCreationException ex)
 		{
 			throw new RuntimeException("Erro ao gerar token");
 		}
 	}
-
-	private Instant generateExpirationDate() {
-        return Instant.now().plusSeconds(86400);
-    }
 
     public String validateToken(String token)
 	{
