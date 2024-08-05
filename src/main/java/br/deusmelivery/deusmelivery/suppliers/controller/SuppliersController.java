@@ -29,7 +29,7 @@ public class SuppliersController {
     }
 
     @GetMapping("/combo")
-    public List<SuppliersComboDTO> getComboSuppliers(@RequestParam(required = false) String filter) {
+    public List<SuppliersComboDTO> getComboSuppliers(@RequestParam(required = false) Long filter) {
         return suppliersService.getComboSuppliers(filter);
     }
 

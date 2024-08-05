@@ -21,12 +21,12 @@ public class SuppliersServiceImpl implements SuppliersService {
         return suppliersRepository.findAll();
     }
 
-    public List<SuppliersComboDTO> getComboSuppliers(String filter) {
+    public List<SuppliersComboDTO> getComboSuppliers(Long filter) {
         List<Suppliers> suppliers;
-        if (filter == null || filter.isEmpty()) {
+        if (filter == null) {
             suppliers = suppliersRepository.findTop10ByOrderByNameAsc();
         } else {
-            suppliers = suppliersRepository.findByNameLike(filter).stream().limit(10).collect(Collectors.toList());
+            suppliers = suppliersRepository.findById(filter).stream().limit(10).collect(Collectors.toList());
         }
 
         return suppliers.stream()

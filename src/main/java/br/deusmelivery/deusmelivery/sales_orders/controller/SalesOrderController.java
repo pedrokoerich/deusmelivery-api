@@ -9,6 +9,7 @@ import br.deusmelivery.deusmelivery.sales_orders.entity.DTO.*;
 
 import br.deusmelivery.deusmelivery.sales_orders.entity.SalesOrder;
 import br.deusmelivery.deusmelivery.sales_orders.service.SalesOrderService;
+import br.deusmelivery.deusmelivery.users.entity.Users;
 
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -59,41 +60,39 @@ public class SalesOrderController {
         }
     }
 
-    //@GetMapping("/Top5BebidasMaisConsumidas")
-    //public ResponseEntity<List<ProductsSalesDTO>> getTop5BebidasMaisConsumidas() {
-    //    List<ProductsSalesDTO> topProducts = salesOrderService.getTop5BebidasMaisConsumidas();
-    //    return ResponseEntity.ok(topProducts);
-    //}
-//
-    //@GetMapping("/Top5BairrosMaisConsumidores")
-    //public ResponseEntity<List<ProductsSalesDTO>> getTop5BairrosMaisConsumidores() {
-    //    List<ProductsSalesDTO> topProducts = salesOrderService.getTop5BairrosMaisConsumidores();
-    //    return ResponseEntity.ok(topProducts);
-    //}
-//
-    //@GetMapping("/VendasNosUltimos12Meses")
-    //public ResponseEntity<List<ProductsSalesDTO>> getVendasNosUltimos12Meses() {
-    //    List<ProductsSalesDTO> topProducts = salesOrderService.getVendasNosUltimos12Meses();
-    //    return ResponseEntity.ok(topProducts);
-    //}
-//
-    //@GetMapping("/VendasNoAno")
-    //public ResponseEntity<List<ProductsSalesDTO>> getVendasNoAno() {
-    //    List<ProductsSalesDTO> topProducts = salesOrderService.getVendasNoAno();
-    //    return ResponseEntity.ok(topProducts);
-    //}
-//
-    //@GetMapping("/VendasNoMes")
-    //public ResponseEntity<List<ProductsSalesDTO>> getVendasNoMes() {
-    //    List<ProductsSalesDTO> topProducts = salesOrderService.getVendasNoMes();
-    //    return ResponseEntity.ok(topProducts);
-    //}
-//
-    //@GetMapping("/Top10ClientesFieis")
-    //public ResponseEntity<List<ProductsSalesDTO>> getTop10ClientesFieis() {
-    //    List<ProductsSalesDTO> topProducts = salesOrderService.getTop10ClientesFieis();
-    //    return ResponseEntity.ok(topProducts);
-    //}
+    @GetMapping("/Top5BebidasMaisConsumidas")
+    public ResponseEntity<List<ProductsSalesDTO>> getTop5BebidasMaisConsumidas() {
+        List<ProductsSalesDTO> topProducts = salesOrderService.getTop5BebidasMaisConsumidas();
+        return ResponseEntity.ok(topProducts);
+    }
+
+    @GetMapping("/Top5EstadosMaisConsumidores")
+    public ResponseEntity<List<ProductsSalesDTO>> getTop5EstadosMaisConsumidores() {
+        List<ProductsSalesDTO> topEstados = salesOrderService.getTop5EstadosMaisConsumidores();
+        return ResponseEntity.ok(topEstados);
+    }
+
+    @GetMapping("/VendasNosUltimos12Meses")
+    public ResponseEntity<List<MonthlySalesDTO>> getVendasNosUltimos12Meses() {
+        List<MonthlySalesDTO> topProducts = salesOrderService.getVendasNosUltimos12Meses();
+        return ResponseEntity.ok(topProducts);
+    }
+
+    @GetMapping("/VendasNoAno")
+    public int getOrdersCountForCurrentYear() {
+        return salesOrderService.getOrdersCountForCurrentYear();
+    }
+
+    @GetMapping("/VendasNoMes")
+    public int getOrdersCountForCurrentMonth() {
+        return salesOrderService.getOrdersCountForCurrentMonth();
+    }
+
+    @GetMapping("/Top10ClientesFieis")
+    public ResponseEntity<List<Users>> getTop10ClientesFieis() {
+        List<Users> topProducts = salesOrderService.getTop10ClientesFieis();
+        return ResponseEntity.ok(topProducts);
+    }
 
 
 }

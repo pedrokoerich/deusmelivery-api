@@ -11,8 +11,11 @@ import org.springframework.stereotype.Service;
 
 import br.deusmelivery.deusmelivery.products.entity.Products;
 import br.deusmelivery.deusmelivery.products.entity.DTO.CategoryProductQuantityDTO;
+import br.deusmelivery.deusmelivery.products.entity.DTO.ProductDTO;
 import br.deusmelivery.deusmelivery.products.repository.ProductsRepository;
 import br.deusmelivery.deusmelivery.products.service.ProductsService;
+import br.deusmelivery.deusmelivery.suppliers.entity.Suppliers;
+import br.deusmelivery.deusmelivery.suppliers.repository.SuppliersRepository;
 import jakarta.persistence.criteria.Predicate;
 
 @Service
@@ -20,6 +23,10 @@ public class ProductsServiceImpl implements ProductsService{
     
     @Autowired
     private ProductsRepository productsRepository;
+
+    @Autowired
+    private SuppliersRepository suppliersRepository;
+
     public ProductsServiceImpl(ProductsRepository productsRepository) {
         this.productsRepository = productsRepository;
     }
@@ -58,44 +65,55 @@ public class ProductsServiceImpl implements ProductsService{
     }
 
     @Override
-    public List<Products> listProducts(Map<String, String> filters) {
-        return productsRepository.findAll(Specification.where(applyFilters(filters)));
-    }
-
-    @Override
     public List<Products> listProducts() {
         return productsRepository.findAll();
     }
-    
+
+
+    @Override
+    public List<ProductDTO> listProducts(Map<String, String> filters) {
+        List<Products> products = productsRepository.findAll(Specification.where(applyFilters(filters)));
+        return products.stream().map(this::mapToProductDTO).collect(Collectors.toList());
+    }
+
+    private ProductDTO mapToProductDTO(Products product) {
+        ProductDTO dto = new ProductDTO();
+        dto.setId(product.getId());
+        dto.setName(product.getName());
+        dto.setCategory(product.getCategory());
+        dto.setQuantity(product.getQuantity());
+        dto.setProductValue(product.getProductValue());
+
+        // Buscar o fornecedor pelo código armazenado em fornec
+        Suppliers fornecedor = suppliersRepository.findById(product.getFornec()).orElse(null);
+        if (fornecedor != null) {
+            dto.setFornecedorName(fornecedor.getName());
+        } else {
+            dto.setFornecedorName("Fornecedor Desconhecido");
+        }
+
+        return dto;
+    }
+
     private Specification<Products> applyFilters(Map<String, String> filters) {
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
-    
+
             filters.forEach((key, value) -> {
                 if (value != null && !value.isEmpty()) {
                     switch (key) {
                         case "categoryFilter":
-                            predicates.add(criteriaBuilder.equal(root.get("categoryFilter"), value));
+                            predicates.add(criteriaBuilder.equal(root.get("category"), value));
                             break;
-                        case "name":
-                            predicates.add(criteriaBuilder.like(root.get("name"), "%" + value + "%"));
-                            break;
-                        case "quantity":
-                            predicates.add(criteriaBuilder.equal(root.get("quantity"), Integer.parseInt(value)));
-                            break;
-                        case "productValue":
-                            predicates.add(criteriaBuilder.equal(root.get("productValue"), Float.parseFloat(value)));
-                            break;
-                        case "fornec":
-                            predicates.add(criteriaBuilder.equal(root.get("fornec"), value));
-                            break;
+                        // Adicione outros filtros conforme necessário
                     }
                 }
             });
-    
+
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }
+    
 
     @Override
     public List<CategoryProductQuantityDTO> sumQuantityByCategory() {

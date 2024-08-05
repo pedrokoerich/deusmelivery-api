@@ -2,13 +2,9 @@ package br.deusmelivery.deusmelivery.sales_orders.entity.DTO;
 
 public class ProductsSalesDTO {
     private String productName;
+    private String stateSale;
     private int quantitySold;
-
-
-    public ProductsSalesDTO(String productName, int quantitySold) {
-        this.productName = productName;
-        this.quantitySold = quantitySold;
-    }
+    private float percentageSold;
 
     public String getProductName() {
         return productName;
@@ -18,6 +14,14 @@ public class ProductsSalesDTO {
         this.productName = productName;
     }
 
+    public String getStateSale() {
+        return stateSale;
+    }
+
+    public void setStateSale(String stateSale) {
+        this.stateSale = stateSale;
+    }
+
     public int getQuantitySold() {
         return quantitySold;
     }
@@ -25,4 +29,13 @@ public class ProductsSalesDTO {
     public void setQuantitySold(int quantitySold) {
         this.quantitySold = quantitySold;
     }
+
+    public float getPercentageSold() {
+        return percentageSold;
+    }
+
+    public void setPercentageSold(float percentageSold) {
+        this.percentageSold = percentageSold;
+    }
+
 }

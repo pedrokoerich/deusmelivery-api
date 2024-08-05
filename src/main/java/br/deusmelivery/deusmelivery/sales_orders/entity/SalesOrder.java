@@ -24,7 +24,7 @@ public class SalesOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String produto;
+    private Long produto;
     private float valorUnitario;
     private int quantidade;
     private float valorTotal;
@@ -33,7 +33,7 @@ public class SalesOrder {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dataEntrega;
     private String horaEntrega;
-    private String cliente;
+    private Long cliente;
 
     
 }

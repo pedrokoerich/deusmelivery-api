@@ -24,5 +24,5 @@ public class Products {
     private String category;
     private int quantity;
     private Float productValue;
-    private String fornec;
+    private Long fornec;
 }

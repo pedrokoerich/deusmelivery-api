@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import br.deusmelivery.deusmelivery.products.entity.Products;
 import br.deusmelivery.deusmelivery.products.entity.DTO.CategoryProductQuantityDTO;
+import br.deusmelivery.deusmelivery.products.entity.DTO.ProductDTO;
 import br.deusmelivery.deusmelivery.products.service.ProductsService;
 
 
@@ -29,8 +30,8 @@ public class ProductsController {
     
 
     @GetMapping
-    public ResponseEntity<List<Products>> getAllProducts(@RequestParam Map<String, String> filters) {
-        List<Products> products = productsService.listProducts(filters);
+    public ResponseEntity<List<ProductDTO>> getAllProducts(@RequestParam Map<String, String> filters) {
+        List<ProductDTO> products = productsService.listProducts(filters);
         return ResponseEntity.ok(products);
     }
     
